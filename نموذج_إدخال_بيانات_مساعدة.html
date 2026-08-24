@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نموذج طلب مساعدة</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f3f7f5;margin:0;padding:20px;color:#173b2d}
+.card{max-width:520px;margin:auto;background:#fff;padding:25px;border-radius:18px;box-shadow:0 4px 18px #0001}
+h1{text-align:center}.note{background:#eef8f2;padding:12px;border-radius:10px;font-size:14px}
+label{display:block;margin-top:15px;font-weight:bold}
+input,textarea{width:100%;box-sizing:border-box;padding:13px;margin-top:7px;border:1px solid #ccd9d2;border-radius:10px;font-size:16px}
+button{width:100%;margin-top:22px;padding:14px;border:0;border-radius:10px;background:#17633f;color:white;font-size:18px;font-weight:bold}
+.small{font-size:12px;color:#666;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>نموذج طلب مساعدة</h1>
+<div class="note">يرجى تعبئة البيانات التالية لإرسال طلبك.</div>
+<form onsubmit="send(event)">
+<label>الاسم الكامل<input id="name" required></label>
+<label>رقم الهاتف<input id="phone" type="tel" required></label>
+<label>المحافظة / المنطقة<input id="area" required></label>
+<label>المبلغ المطلوب للمساعدة (بالريال)<input id="amount" type="number" min="0" required></label>
+<label>سبب طلب المساعدة<textarea id="reason" rows="4" required></textarea></label>
+<button type="submit">إرسال الطلب عبر واتساب</button>
+<div class="small">ملاحظة: هذا نموذج تجريبي، وإرسال البيانات لا يعني الموافقة على أي مساعدة أو تحويل مالي.</div>
+</form>
+</div>
+<script>
+function send(e){
+ e.preventDefault();
+ const n=document.getElementById('name').value;
+ const p=document.getElementById('phone').value;
+ const a=document.getElementById('area').value;
+ const m=document.getElementById('amount').value;
+ const r=document.getElementById('reason').value;
+ const msg=`طلب مساعدة مالية%0A%0Aالاسم: ${encodeURIComponent(n)}%0Aرقم الهاتف: ${encodeURIComponent(p)}%0Aالمحافظة/المنطقة: ${encodeURIComponent(a)}%0Aالمبلغ المطلوب: ${encodeURIComponent(m)} ريال%0Aسبب الطلب: ${encodeURIComponent(r)}`;
+ window.open('https://wa.me/962780817783?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
